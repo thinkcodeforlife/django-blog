@@ -1,0 +1,47 @@
+<!-- <li> -->
+    <!-- <a href="{{blog_post.get_absolute_url}}"> -->
+
+        <!-- {{ blog_post.title }} -->
+
+    <!-- </a> -->
+<!-- </li> -->
+<div class="col-12 col-md-4 mb-3 mx-auto">
+    <div class="card {% if not blog_post.publish_date %} bg-dark text-light {% endif %}">
+        <div class="card-body">
+            {% if blog_post.image %}
+                <img src="{{ blog_post.image.url }}" class="card-img-top">
+            {% endif %}
+            <h5 class="card-title">
+                {{ blog_post.title }}
+            </h5>
+            <p class="card-text">
+                <small class="text-muted">{{ blog_post.publish_date }}</small>
+                {% if truncate %}
+                        {{ blog_post.content|linebreaks|truncatewords:40 }}
+                {% else %}
+                        {{ blog_post.content|linebreaks }}
+                {% endif %}
+            </p>
+            {% if detail %}
+                {% if not blog_post.publish_date %} Draft {% endif %}
+                <a href="{{blog_post.get_absolute_url}}">
+                    View
+                </a>
+            {% endif %}
+            {% if buttons %}
+                <div class="card-footer">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_staff %}
+                            <a href="{{ object.get_edit_url }}">
+                                Edit
+                            </a>
+                            <a href="{{ object.get_delete_url }}">
+                                Delete
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    Better
+{% endblock %}
+
+{% block content %}
+
+    {{ request.user }}
+    {{ request.path }}
+
+    <br>
+
+    {{ user }}
+    {{ user.is_authenticated }}
+
+    <br>
+
+    {% for i in li %}
+        <li> {{ i }} </li>
+    {% endfor %}
+
+{% endblock %}

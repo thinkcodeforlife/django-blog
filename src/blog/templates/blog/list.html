@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    {{ head_title }}
+{% endblock %}
+
+{% block blog %}
+
+    <div class="row">
+
+        {% for object in object_list %}
+            {% include 'blog/list-inline.html' with blog_post=object truncate=True detail=True buttons=False %}
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

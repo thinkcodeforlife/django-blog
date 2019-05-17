@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    {{ head_title }}
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+
+    {% if user.is_authenticated %}
+        <h3>Hello {{ user }}</h3>
+    {% endif %}
+
+{% endblock %}
+
+{% block blog %}
+    <div class="row">
+        {% for i in li %}
+            {% include 'blog/list-inline.html' with blog_post=i truncate=True detail=False buttons=False %}
+        {% endfor %}
+    </div>
+{% endblock %}
